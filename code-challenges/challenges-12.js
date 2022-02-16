@@ -15,9 +15,12 @@
 // ------------------------
 
 const oddFiltration = (arr) => {
-   let old = arr.filter(x=> x%2!==0)
- 
-    return old
+    let oddNum = arr.filter(odd =>{
+        if(odd%2!=0){
+            return odd
+        }
+    })
+    return oddNum
 }
 
 // 2) ---------------------
@@ -52,9 +55,9 @@ const oddFiltration = (arr) => {
 //         tech: "Java"
 //     }
 // ]
-
+//
 //   ===>
-
+//
 // [
 //     {
 //         fullName: "Jason James",
@@ -67,41 +70,27 @@ const oddFiltration = (arr) => {
 //  2- If one of the names is null dont add it to the full name
 // ------------------------
 
-
 const cvsFiltration = (arr) => {
-   var result=[]
-    var result2=[]
-    var result3={}
-    arr.forEach(element => {
- let exp = element.yearsOfExperience      
- let y = element.tech
- if(exp>4&&y=="JS"){
-   result.push(element)
-   let fullname=`${element.firstName} ${element.LastName}`
-   let z=element.tech
-  let result3={fullName:fullname,tech:z}
+    let candidates =[]
+    let candidatesObj={}
+    let ex = arr.filter(obj =>{
+        if(obj.yearsOfExperience >4 && obj.tech == "JS"){
+            return obj 
+        }
+    })
+    let objcan = ex.filter(person =>{
+    candidatesObj[`fullName`] =`${person.firstName} ${person.LastName}`
+    candidatesObj[`tech`] = person.tech
+      candidates.push(candidatesObj)
+    })
    
-   
-   result2.push(result3)
-   
-   
- 
-             }
-})
-
-return result2
-
+   return candidates
 
 }
 
-
-
-
-
-  
 // 3) ---------------------
 //
-// Given an array of words filter out the words that contains one of the vowels (a, e, i, o, u)
+// Given an array of words filter the names that contains one of the vowels (a, e, i, o, u)
 
 // EX:
 // ['car', 'boy', 'spy', 'building', 'why', 'dry' ] ==> ['spy', 'why', 'dry']
@@ -109,13 +98,16 @@ return result2
 // ------------------------
 
 const vowelsFiltration = (arr) => {
-     
-    let result = arr.filter(word=> word=="dry"||word=="why"||word=="spy" )
-    return result
-    console.log(result) 
+    let regex = /(a|e|i|o|u)/gi
+    let out = arr.filter(st =>{
+      if(st.match(regex)==null){
+        return st
+      }
+    })
+    return out
 } 
 
-// 4) ---------------------=>
+// 4) ---------------------
 //
 // An employer wants to compare between his employees skills, write a function that will extract the differences 
 // between the employees skills.
@@ -130,9 +122,21 @@ const vowelsFiltration = (arr) => {
 // ------------------------
 
 const skillComparison = (arr1, arr2) => {
+    let out =[]
+   
+    arr1.filter(el =>{
+       if (arr2.includes(el)==false){
+            out.push(el)
+       }
+    })
+    arr2.filter(e2 =>{
+      if(arr1.includes(e2) == false){
+        out.push(e2)
+      }
+    })
     
+    return out
 }
 
 
 module.exports = { oddFiltration, cvsFiltration, vowelsFiltration, skillComparison };
-
