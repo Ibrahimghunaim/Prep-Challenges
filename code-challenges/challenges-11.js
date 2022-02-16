@@ -15,17 +15,16 @@
 // 
 // -------------
 
-function square(arr  ) {
-    const map1 = arr.map(x => x * x);
-
-
-
-return map1
-};
+function square(arr) {
+    let valu= arr.map(x =>{
+        return x*x
+    })
+    return valu
+}
 
 // 2) ------------------
-// //
-// // Ex:
+//
+// Ex:
 // [
 //     {
 //         firstName: 'Adam',
@@ -45,10 +44,10 @@ return map1
 //     },
 //     {
 //         firstName: 'Nathan',
-//          firstName: 'Weiss',
+//         lastName: 'Weiss',
 //     }
 // ]
-
+//
 //
 // Output ==>['Adam Anderson', 'Ben Zeller', 'Peter Mccord', 'Fred Sagar', 'Nathan Weiss']
 // 
@@ -59,28 +58,12 @@ return map1
 //
 
 function fullName(arr) {
- 
-    var out=[]
-   var fullname2
-   
-   
-   
-   for(let i=0;i<=arr.length -1; i++){
-       let p= arr[i];
-       let fullname2 =`${p.firstName} ${p.lastName}`
-       out[i]=fullname2
-       
-
+    let valu = arr.map(obj =>{
+        return `${obj.firstName} ${obj.lastName}`
       
-   }
-        return out
-
-   
-
-};
-
-
-
+      })
+      return valu
+}
 
 // 3) ---------------------
 // 
@@ -141,9 +124,24 @@ function fullName(arr) {
 // -------------
 
 function gradesAvg(arr) {
-    
-    
+    let avg = 0
+    let total =0
+    let newARR =[]
+     let valu = arr.map(obj =>{
+       avg =0
+       total =0
+        let avgp =obj.gradsList.map(num =>{
+         total += num
+         return avg =total/obj.gradsList.length
+        })
+        obj [`avg`] =  avg
+        newARR.push(obj)
+     })
+     return newARR
+       
 }
+
+
 
 
 // 4) ---------------------
@@ -213,7 +211,27 @@ function gradesAvg(arr) {
 // -------------
 
 function studentsResult(arr) {
-    // write your code here
+    let avg = 0
+    let total =0
+    let newARR =[]
+     let valu = arr.map(obj =>{
+       avg =0
+       total =0
+        let avgp =obj.gradsList.map(num =>{
+         total += num
+         return avg =total/obj.gradsList.length
+        })
+        obj [`avg`] =  avg
+        if(avg>=50){
+            obj [`result`] = `Passed`
+        }else{
+            obj [`result`] = `Failed`
+        }
+        newARR.push(obj)
+     })
+     return newARR
 }
+
+// Eazy ---- <{+_+}>
 
 module.exports = { square, fullName, gradesAvg, studentsResult };
